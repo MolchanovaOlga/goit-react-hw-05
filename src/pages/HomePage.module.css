@@ -1,0 +1,16 @@
+.container {
+  padding: 0 10px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 48px 72px;
+  }
+}
+
+.title {
+  margin: 48px 0;
+}

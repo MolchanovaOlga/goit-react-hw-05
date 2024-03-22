@@ -1,0 +1,31 @@
+.image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.text {
+  font-weight: 300;
+}
+
+.span {
+  font-weight: 700;
+}
