@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import css from './App.module.css';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
+import MovieDetailsPage from './pages/MovieDetailsPage';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -27,6 +28,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/movies" element={<MoviesPage />}></Route>
+            <Route
+              path="/movies/:movieId/*"
+              element={<MovieDetailsPage />}
+            ></Route>
           </Routes>
         </div>
       </main>

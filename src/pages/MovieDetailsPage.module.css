@@ -1,0 +1,92 @@
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 48px;
+}
+
+.container {
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 320px;
+  background-color: #8f8f8f;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 48px;
+    flex-direction: row;
+    gap: 48px;
+    align-items: flex-start;
+  }
+}
+
+.imgContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 300px;
+  height: 450px;
+}
+
+.title {
+  margin: 0 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    margin: 0 0 36px;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 320px;
+  padding-bottom: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .text {
+    padding-bottom: 36px;
+  }
+}
+
+.span {
+  font-weight: 700;
+}
+
+.linkContainer {
+  margin: 48px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.linkContainer > a {
+  color: #213547;
+  border: 1px solid #cccccc;
+  padding: 10px 16px;
+  border-radius: 8px;
+  width: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkContainer > a:hover,
+.linkContainer > a:focus {
+  color: #fff;
+  background-color: #8f8f8f;
+}
+
+.routesContainer {
+  border-radius: 4px;
+  margin-top: 24px;
+  padding: 16px;
+}

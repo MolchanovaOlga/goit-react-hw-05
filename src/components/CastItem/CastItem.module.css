@@ -1,0 +1,17 @@
+.imgContainer {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 225px;
+}
+
+.title {
+  margin: 10px 0;
+}
+
+.span {
+  font-weight: 700;
+}
+
+.text {
+  margin: 0;
+}

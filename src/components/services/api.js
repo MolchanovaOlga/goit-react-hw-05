@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const idAPI = '0ed9f187b4616957d65fb0552612573f';
+//const idAPI = '0ed9f187b4616957d65fb0552612573f';
 
 const options = {
   headers: {
@@ -11,11 +11,25 @@ const options = {
 };
 
 export const requestTrendingMovies = async () => {
-  //axios.defaults.baseURL = 'https://api.themoviedb.org/';
   const response = await axios.get(
     'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
     options
   );
-
   return response.data;
+};
+
+export const requestMovieById = async movieId => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+    options
+  );
+  return response.data;
+};
+
+export const requestCastById = async movieId => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+    options
+  );
+  return response.data.cast;
 };

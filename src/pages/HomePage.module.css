@@ -1,8 +1,12 @@
 .container {
-  padding: 0 10px 48px;
+  padding: 0 16px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #8f8f8f;
+  margin: 48px;
+  border-radius: 8px;
+  min-height: 450px;
 }
 
 @media screen and (min-width: 768px) {
@@ -13,4 +17,5 @@
 
 .title {
   margin: 48px 0;
+  color: #fff;
 }

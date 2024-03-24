@@ -1,3 +1,7 @@
+.imgContainer {
+  height: 450px;
+}
+
 .image {
   display: block;
   width: 100%;

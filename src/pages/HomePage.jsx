@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import css from './HomePage.module.css';
 
 import { requestTrendingMovies } from '../components/services/api';
-import MoviesGallery from '../components/MoviesGallery/MoviesGallery';
+import MovieList from '../components/MovieList/MovieList';
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState(null);
@@ -12,7 +12,6 @@ const HomePage = () => {
     const fetchmovies = async () => {
       try {
         const data = await requestTrendingMovies();
-        console.log(data.results);
         setTrendingMovies(data.results);
       } catch (error) {
         console.log(error);
@@ -24,7 +23,7 @@ const HomePage = () => {
   return (
     <div className={css.container}>
       <h1 className={css.title}>Trending Today</h1>
-      <MoviesGallery trendingMovies={trendingMovies} />
+      <MovieList trendingMovies={trendingMovies} />
     </div>
   );
 };
