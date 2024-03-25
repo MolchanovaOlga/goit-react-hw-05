@@ -1,4 +1,4 @@
-.container {
+.content {
   padding: 0 16px 48px;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .content {
     padding: 0 48px 72px;
   }
 }
@@ -18,4 +18,11 @@
 .title {
   margin: 48px 0;
   color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

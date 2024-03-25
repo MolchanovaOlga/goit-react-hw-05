@@ -43,6 +43,9 @@ const MovieCast = () => {
           })}
         </ul>
       )}
+      {Array.isArray(cast) && cast.length === 0 && (
+        <p className={css.noReviewText}>We don't have cast for this movie.</p>
+      )}
     </>
   );
 };

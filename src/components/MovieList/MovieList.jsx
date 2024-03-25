@@ -3,12 +3,12 @@ import css from './MovieList.module.css';
 import MoviesListItem from '../MovieListItem/MovieListItem';
 import { Link } from 'react-router-dom';
 
-const MoviesList = ({ trendingMovies }) => {
+const MoviesList = ({ moviesList }) => {
   return (
     <ul className={css.list}>
-      {Array.isArray(trendingMovies) &&
-        trendingMovies.length > 0 &&
-        trendingMovies.map(item => {
+      {Array.isArray(moviesList) &&
+        moviesList.length > 0 &&
+        moviesList.map(item => {
           return (
             <li className={css.item} key={item.id}>
               <MoviesListItem item={item} />

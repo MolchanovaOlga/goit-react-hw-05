@@ -29,11 +29,13 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className={css.container}>
-      {loading && <Loader />}
+    <div className={css.content}>
       <h1 className={css.title}>Trending Today</h1>
-      {error && !trendingMovies && <ErrorMessage />}
-      <MovieList trendingMovies={trendingMovies} />
+      <div className={css.container}>
+        {loading && <Loader />}
+        {error && !trendingMovies && <ErrorMessage />}
+        <MovieList moviesList={trendingMovies} />
+      </div>
     </div>
   );
 };

@@ -1,28 +1,15 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
-import clsx from 'clsx';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import css from './App.module.css';
 import HomePage from './pages/HomePage/HomePage';
 import MoviesPage from './pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
+import Navigation from './components/Navigation/Navigation';
 
 function App() {
   return (
     <div>
-      <header className={css.header}>
-        <nav className={css.nav}>
-          <NavLink to="/" className={buildLinkClass}>
-            Home
-          </NavLink>
-          <NavLink to="/movies" className={buildLinkClass}>
-            Movies
-          </NavLink>
-        </nav>
-      </header>
+      <Navigation />
       <main>
         <div className={css.mainContainer}>
           <Routes>
@@ -32,6 +19,7 @@ function App() {
               path="/movies/:movieId/*"
               element={<MovieDetailsPage />}
             ></Route>
+            <Route path="*" element={<Navigate to="/" replace />}></Route>
           </Routes>
         </div>
       </main>

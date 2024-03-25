@@ -14,7 +14,7 @@ const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(false);
 
   const defaultImg =
-    '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>';
+    'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 
   useEffect(() => {
     const fetchmovies = async () => {
@@ -42,19 +42,19 @@ const MovieDetailsPage = () => {
   return (
     <div className={css.pageContent}>
       <div className={css.container}>
-        {loading && <Loader />}
         <div className={css.imgContainer}>
-          <img src={srcImg} alt={altImg} width={300} />
+          <img className={css.img} src={srcImg} alt={altImg} width={300} />
         </div>
-        {error && !movieData && <ErrorMessage />}
         <div>
+          {loading && <Loader />}
+          {error && !movieData && <ErrorMessage />}
           {movieData && movieData.release_date && (
             <h2 className={css.title}>{`${movieData.title} (${new Date(
               movieData.release_date
             ).getFullYear()})`}</h2>
           )}
           <div className={css.text}>
-            {movieData && movieData.genres && (
+            {movieData && movieData.genres && movieData.genres.length > 0 && (
               <p>
                 <span className={css.span}>Genres:</span>{' '}
                 {movieData.genres
@@ -64,27 +64,29 @@ const MovieDetailsPage = () => {
                   .join(', ')}
               </p>
             )}
-            {movieData && movieData.vote_average && (
+            {movieData && (
               <p>
                 <span className={css.span}>Rating:</span>{' '}
                 {movieData.vote_average.toFixed(1)}
               </p>
             )}
-            {movieData && movieData.budget && (
+            {movieData && (
               <p>
                 <span className={css.span}>Budget:</span> {movieData.budget}
               </p>
             )}
-            {movieData && movieData.production_countries && (
-              <p>
-                <span className={css.span}>Country:</span>{' '}
-                {movieData.production_countries
-                  .map(item => {
-                    return item.name;
-                  })
-                  .join(', ')}
-              </p>
-            )}
+            {movieData &&
+              movieData.production_countries &&
+              movieData.production_countries.length > 0 && (
+                <p>
+                  <span className={css.span}>Country:</span>{' '}
+                  {movieData.production_countries
+                    .map(item => {
+                      return item.name;
+                    })
+                    .join(', ')}
+                </p>
+              )}
             {movieData && movieData.runtime && (
               <p>
                 <span className={css.span}>Runtime:</span> {movieData.runtime}{' '}
