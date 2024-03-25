@@ -10,6 +10,8 @@
   padding: 48px 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 24px;
   min-width: 320px;
   background-color: #8f8f8f;
@@ -24,6 +26,13 @@
     gap: 48px;
     align-items: flex-start;
   }
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .imgContainer {
@@ -83,10 +92,14 @@
 .linkContainer > a:focus {
   color: #fff;
   background-color: #8f8f8f;
+  transition: background-color 200ms linear;
+  transition: color 200ms linear;
 }
 
 .routesContainer {
   border-radius: 4px;
-  margin-top: 24px;
-  padding: 16px;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

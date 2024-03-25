@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useParams } from 'react-router-dom';
 import css from './MovieDetailsPage.module.css';
-import { requestMovieById } from '../components/services/api';
-import MovieCast from '../components/MovieCast/MovieCast';
-import MovieReviews from '../components/MovieReviews/MovieReviews';
+import { requestMovieById } from '../../components/services/api';
+import MovieCast from '../../components/MovieCast/MovieCast';
+import MovieReviews from '../../components/MovieReviews/MovieReviews';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieData, setmovieData] = useState(null);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const defaultImg =
     '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>';
@@ -15,11 +19,15 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     const fetchmovies = async () => {
       try {
+        setLoading(true);
+        setError(false);
         const data = await requestMovieById(movieId);
         console.log(data);
         setmovieData(data);
       } catch (error) {
-        console.log(error);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
     fetchmovies();
@@ -34,9 +42,11 @@ const MovieDetailsPage = () => {
   return (
     <div className={css.pageContent}>
       <div className={css.container}>
+        {loading && <Loader />}
         <div className={css.imgContainer}>
           <img src={srcImg} alt={altImg} width={300} />
         </div>
+        {error && !movieData && <ErrorMessage />}
         <div>
           {movieData && movieData.release_date && (
             <h2 className={css.title}>{`${movieData.title} (${new Date(
@@ -52,6 +62,12 @@ const MovieDetailsPage = () => {
                     return item.name;
                   })
                   .join(', ')}
+              </p>
+            )}
+            {movieData && movieData.vote_average && (
+              <p>
+                <span className={css.span}>Rating:</span>{' '}
+                {movieData.vote_average.toFixed(1)}
               </p>
             )}
             {movieData && movieData.budget && (
@@ -83,7 +99,7 @@ const MovieDetailsPage = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className={css.navContainer}>
         <div className={css.linkContainer}>
           <NavLink className={css.castLink} to={'cast'}>
             Cast

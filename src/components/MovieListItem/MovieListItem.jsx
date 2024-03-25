@@ -1,6 +1,6 @@
 import css from './MovieListItem.module.css';
 
-const MoviesGalleryItem = ({
+const MoviesListItem = ({
   item: { popularity, release_date, poster_path, title },
 }) => {
   const popularityMovie = popularity.toFixed(1);
@@ -34,4 +34,4 @@ const MoviesGalleryItem = ({
   );
 };
 
-export default MoviesGalleryItem;
+export default MoviesListItem;
