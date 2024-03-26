@@ -20,3 +20,7 @@
 .noReviewText {
   color: #8f8f8f;
 }
+
+ul {
+  list-style: none;
+}
