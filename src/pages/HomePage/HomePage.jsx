@@ -34,7 +34,9 @@ const HomePage = () => {
       <div className={css.container}>
         {loading && <Loader />}
         {error && !trendingMovies && <ErrorMessage />}
-        <MovieList moviesList={trendingMovies} />
+        {Array.isArray(trendingMovies) && trendingMovies.length > 0 && (
+          <MovieList moviesList={trendingMovies} />
+        )}
       </div>
     </div>
   );
