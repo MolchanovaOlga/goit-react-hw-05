@@ -1,10 +1,17 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
 
 import css from './App.module.css';
-import HomePage from './pages/HomePage/HomePage';
-import MoviesPage from './pages/MoviesPage/MoviesPage';
-import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+  import('./pages/MovieDetailsPage/MovieDetailsPage')
+);
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+
 import Navigation from './components/Navigation/Navigation';
+import Loader from './components/Loader/Loader';
 
 function App() {
   return (
@@ -12,15 +19,17 @@ function App() {
       <Navigation />
       <main>
         <div className={css.mainContainer}>
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/movies" element={<MoviesPage />}></Route>
-            <Route
-              path="/movies/:movieId/*"
-              element={<MovieDetailsPage />}
-            ></Route>
-            <Route path="*" element={<Navigate to="/" replace />}></Route>
-          </Routes>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/movies" element={<MoviesPage />}></Route>
+              <Route
+                path="/movies/:movieId/*"
+                element={<MovieDetailsPage />}
+              ></Route>
+              <Route path="*" element={<NotFoundPage replace />}></Route>
+            </Routes>
+          </Suspense>
         </div>
       </main>
     </div>

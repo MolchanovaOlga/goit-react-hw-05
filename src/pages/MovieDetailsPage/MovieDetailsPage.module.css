@@ -6,6 +6,30 @@
   margin: 48px;
 }
 
+.backBtnAndImgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.linkBack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+.linkBack:hover,
+.linkBack:focus {
+  text-decoration: underline;
+}
+
+.linkBack:hover .linkBackIcon,
+.linkBack:focus .linkBackIcon {
+  text-decoration: underline;
+}
+
 .container {
   padding: 48px 20px;
   display: flex;

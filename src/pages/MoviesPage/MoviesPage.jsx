@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react';
 
-import css from './MoviePage.module.css'
+import css from './MoviePage.module.css';
 
 import MoviesList from '../../components/MovieList/MovieList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import message from '../../components/services/message';
 import Loader from '../../components/Loader/Loader';
 import { requestMovieByQuery } from '../../components/services/api';
+import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
-  const [searchQuery, setsearchQuery] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  //const [searchQuery, setsearchQuery] = useState(null);
   const [searchMovies, setSearchMovies] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const onSetSearchQuery = query => {
+  const searchQuery = searchParams.get('query');
+
+  const onSetSearchQuery = searchTerm => {
     setSearchMovies([]);
-    setsearchQuery(query);
+    //setsearchQuery(query);
+    setSearchParams({ query: searchTerm });
   };
 
   useEffect(() => {
@@ -30,7 +36,11 @@ const MoviesPage = () => {
         setError(false);
         const data = await requestMovieByQuery(searchQuery);
         setSearchMovies(data);
-        console.log(data);
+
+        if (data.length === 0) {
+          message();
+          return;
+        }
       } catch (error) {
         setError(true);
       } finally {
@@ -43,7 +53,7 @@ const MoviesPage = () => {
   return (
     <div className={css.container}>
       {error && <ErrorMessage />}
-      <SearchBar onSearch={onSetSearchQuery} />
+      <SearchBar searchQuery={searchQuery} onSearch={onSetSearchQuery} />
       {loading && <Loader />}
       <MoviesList moviesList={searchMovies} />
     </div>

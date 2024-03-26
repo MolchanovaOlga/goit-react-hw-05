@@ -1,7 +1,7 @@
 import toast, { Toaster } from 'react-hot-toast';
 import css from './SearchBar.module.css';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, searchQuery }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
@@ -27,6 +27,7 @@ const SearchBar = ({ onSearch }) => {
         <label className={css.label}>
           <input
             className={css.input}
+            defaultValue={searchQuery}
             type="text"
             name="searchInput"
             autoComplete="off"

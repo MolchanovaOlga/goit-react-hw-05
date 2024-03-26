@@ -1,9 +1,11 @@
 import css from './MovieList.module.css';
 
 import MoviesListItem from '../MovieListItem/MovieListItem';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const MoviesList = ({ moviesList }) => {
+  const location = useLocation();
+
   return (
     <ul className={css.list}>
       {Array.isArray(moviesList) &&
@@ -12,7 +14,11 @@ const MoviesList = ({ moviesList }) => {
           return (
             <li className={css.item} key={item.id}>
               <MoviesListItem item={item} />
-              <Link to={`/movies/${item.id}`} className={css.link}>
+              <Link
+                state={location}
+                to={`/movies/${item.id}`}
+                className={css.link}
+              >
                 See more...
               </Link>
             </li>
